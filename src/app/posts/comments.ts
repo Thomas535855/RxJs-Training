@@ -7,7 +7,7 @@ import { AsyncPipe } from '@angular/common';
   selector: 'app-comments',
   template: `
     <section>
-      <h2>Latest Comments</h2>
+      <h2>Latest Comments:</h2>
       <ul>
         @for (item of comments() | async; track item.commentId) {
           <li>
