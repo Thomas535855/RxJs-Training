@@ -12,8 +12,8 @@ import { AsyncPipe } from '@angular/common';
         @for (item of comments() | async; track item.commentId) {
           <li>
             <button type="button" (click)="openDetail(item.postId)" style="background:none;border:none;padding:0;cursor:pointer;">
-              <span class="post-title">{{ item.postTitle }}</span> -
-              <span class="comment-name">{{ item.commentName }}</span>
+              <span class="post-title">Post title: {{ item.postTitle }}</span> -
+              <span class="comment-name">Comment name: {{ item.commentName }}</span>
             </button>
           </li>
         }
@@ -30,4 +30,5 @@ export class CommentsComponent {
   openDetail(postId: number): void {
     this.router.navigate(['/comments', postId]);
   }
+
 }

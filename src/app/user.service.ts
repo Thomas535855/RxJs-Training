@@ -54,8 +54,8 @@ export class UserService {
 
   getLatestComments(limit = 10): Observable<Array<{ postId: number; postTitle: string; commentId: number; commentName: string }>> {
     return forkJoin({
-      comments: this.http.get<Comment[]>(`${this.apiUrl}/comments?_limit=${limit}`),
-      posts: this.http.get<Posts[]>(`${this.apiUrl}/posts`)
+      comments: this.http.get<Comment[]>(`https://jsonplaceholder.typicode.com/comments?_limit=${limit}`),
+      posts: this.http.get<Posts[]>(`https://jsonplaceholder.typicode.com/posts`)
     }).pipe(
       map(({ comments, posts }) =>
         comments.map(comment => ({
@@ -68,10 +68,13 @@ export class UserService {
     );
   }
 
+
+  // src/app/user.service.ts
   getPostWithComments(postId: number): Observable<{ post: Posts; comments: Comment[] }> {
     return forkJoin({
-      post: this.http.get<Posts>(`${this.apiUrl}/posts/${postId}`),
-      comments: this.http.get<Comment[]>(`${this.apiUrl}/comments?postId=${postId}`)
+      post: this.http.get<Posts>(`https://jsonplaceholder.typicode.com/posts/${postId}`),
+      comments: this.http.get<Comment[]>(`https://jsonplaceholder.typicode.com/comments?postId=${postId}`)
     });
   }
+
 }
